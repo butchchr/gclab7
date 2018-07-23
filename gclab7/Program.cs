@@ -72,13 +72,13 @@ namespace gclab7
         static bool IsName(string name)
         {
             //a-z only 1-30 start with capital
-            return Regex.IsMatch(name, ("^[A-Z]{1}[a-z]{1,30}$"));
+            return Regex.IsMatch(name, ("^[A-Z]{1}[a-z]{0,30}$"));
         }
 
         static bool IsEmail(string email)
         {
             // {A9 5 <= email <= 30} @ {A9 5 <= website <= 10} . {A9 2 <= com <= 3}
-            return Regex.IsMatch(email, (@"(\w{5,30})@(\w{5,10}).(\w{2,3})"));
+            return Regex.IsMatch(email, (@"(\w[^_]{5,30})@(\w[^_]{5,10}).(\w[^_]{2,3})"));
         }
 
         static bool IsPhone(string phone)
