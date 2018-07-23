@@ -23,18 +23,17 @@ namespace gclab7
             Console.WriteLine("Please enter a date in the form dd/mm/yyyy:");
             string date = Console.ReadLine();
 
-            if (IsName(name))
+            if (IsNOW(name) && (IsName(name)))
             {
                 Console.WriteLine(name);
             }
 
             else
-
             {
                 Console.WriteLine("Sorry, name is not valid");
             }
 
-            if (IsEmail(email))
+            if (IsNOW(email) && (IsEmail(email)))
             {
                 Console.WriteLine(email);
             }
@@ -43,7 +42,7 @@ namespace gclab7
                 Console.WriteLine("Sorry your email is not valid");
             }
 
-            if (IsPhone(phone))
+            if (IsNOW(phone) && (IsPhone(phone)))
             {
                 Console.WriteLine(phone);
             }
@@ -52,7 +51,7 @@ namespace gclab7
                 Console.WriteLine("Sorry your phone is not valid");
             }
 
-            if (IsDate(date))
+            if (IsNOW(date) && (IsDate(date)))
             {
                 Console.WriteLine(date);
             }
@@ -63,11 +62,16 @@ namespace gclab7
             Console.ReadKey();
         }
 
+        //method to check for null or white space
+        static bool IsNOW(string input)
+        {
+            return !string.IsNullOrWhiteSpace(input);
+        }
 
         static bool IsName(string name)
         {
             //a-z only 1-30 start with capital
-            return true;
+            return Regex.IsMatch(name, ("^[A-Z]{1}[a-z]{1,30}$"));
         }
 
         static bool IsEmail(string email)
