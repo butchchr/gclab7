@@ -14,18 +14,9 @@ namespace gclab7
             Console.WriteLine("Hello User: Please enter your name:");
             string name = Console.ReadLine();
 
-            Console.WriteLine("Please enter your email address in the form helloworld@email.com:");
-            string email = Console.ReadLine();
-
-            Console.WriteLine("Please enter your phone number in the form (123) 456-7890:");
-            string phone = Console.ReadLine();
-
-            Console.WriteLine("Please enter a date in the form dd/mm/yyyy:");
-            string date = Console.ReadLine();
-
             if (IsNOW(name) && (IsName(name)))
             {
-                Console.WriteLine(name);
+                Console.WriteLine("I love the name " + name + "!");
             }
 
             else
@@ -33,27 +24,37 @@ namespace gclab7
                 Console.WriteLine("Sorry, name is not valid");
             }
 
+            Console.WriteLine("Please enter your email address in the form helloworld@email.com:");
+            string email = Console.ReadLine();
+
             if (IsNOW(email) && (IsEmail(email)))
             {
-                Console.WriteLine(email);
+                Console.WriteLine(email + " looks like a valid email address to me");
             }
             else
             {
                 Console.WriteLine("Sorry your email is not valid");
             }
 
+
+            Console.WriteLine("Please enter your phone number in the form 123-456-7890:");
+            string phone = Console.ReadLine();
+
             if (IsNOW(phone) && (IsPhone(phone)))
             {
-                Console.WriteLine(phone);
+                Console.WriteLine(phone + " you say? I'll have my modem call your people");
             }
             else
             {
                 Console.WriteLine("Sorry your phone is not valid");
             }
 
+            Console.WriteLine("Please enter a date in the form dd/mm/yyyy:");
+            string date = Console.ReadLine();
+            
             if (IsNOW(date) && (IsDate(date)))
             {
-                Console.WriteLine(date);
+                Console.WriteLine(date + " That's my favorite day!");
             }
             else
             {
@@ -76,21 +77,20 @@ namespace gclab7
 
         static bool IsEmail(string email)
         {
-            // {A# 5 <= email <= 30} @ {A# 5 <= website <= 10} . {A# 2 <= com <= 3}
-            return true;
+            // {A9 5 <= email <= 30} @ {A9 5 <= website <= 10} . {A9 2 <= com <= 3}
+            return Regex.IsMatch(email, (@"(\w{5,30})@(\w{5,10}).(\w{2,3})"));
         }
 
         static bool IsPhone(string phone)
         {
-            //# only (123) 456-7890
-            return true;
+            //# only 123-456-7890
+            return Regex.IsMatch(phone, (@"(\d{3})-(\d{3})-(\d{4})$"));
         }
 
         static bool IsDate(string date)
         {
             //dd/mm/yyyy
-            return true;
+            return Regex.IsMatch(date, (@"^(\d{2})/(\d{2}/)(\d{4})$"));
         }
-
     }
 }
